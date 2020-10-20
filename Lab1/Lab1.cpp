@@ -14,7 +14,6 @@ int main()
 	cin>>hypotenuse;
 	catet2=sqrt(pow(hypotenuse, 2)-pow(catet1, 2));
 	innerRadius =(catet1+catet2-hypotenuse)/2;
-	
 	cout<<"Внутренний радиус равен ";
 	printf("%0.3f\n", innerRadius);
 	system("pause");
