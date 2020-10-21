@@ -14,12 +14,12 @@ int main()
 	else{
 		cout<<"Введите гипотенузу: ";			
 		cin>>hypotenuse;
-		if((hypotenuse<=0)||(hypotenuse<katet1))  cout<<"Такой прямоугольный треугольник не существует";
+		if(hypotenuse<katet1)  cout<<"Такой прямоугольный треугольник не существует";
 		else{
 			katet2=sqrt(pow(hypotenuse, 2)-pow(katet1, 2));
 			innerRadius =(katet1+katet2-hypotenuse)/2;
 			cout<<"Радиус окружности, вписанной в этот треугольник: ";
-			printf("%0.3f\n", innerRadius);
+			printf("%0.2f\n", innerRadius);
 			system("pause");
 			}
 		}
