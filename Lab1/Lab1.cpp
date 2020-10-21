@@ -1,22 +1,21 @@
 ﻿#include <iostream>
 #include <cmath>
-#include <iomanip>
 
 using namespace std;
 
 int main()
 {
 	setlocale(LC_ALL,"Russian");
-	double catet1, catet2;										//оголошення катетів
-	double innerRadius, hypotenuse;								//оголошення гіпотенузи та внутрішнього радіусу
-	cout<<"Введите катет: ";									
-	cin>>catet1;												//введення першого катета
-	cout<<"Введите гипотенузу: ";								
-	cin>>hypotenuse;											//введення гіпотенузи
-	catet2=sqrt(pow(hypotenuse, 2)-pow(catet1, 2));	//обчислення другого катета
-	innerRadius =(catet1+catet2-hypotenuse)/2;					//обчислення внутрішнього радіусу трикутника
-	cout<<"Внутренний радиус равен ";
-	printf("%0.3f\n", innerRadius);						//виведення радіусу з точністю 3 знаки після крапки
+	double katet1, katet2;							//Оголошення катетів
+	double hypotenuse, innerRadius;					//Оголошення гіпотенузи та радіса кола, вписаного у цей прямокутний трикутник
+	cout<<"Введите катет: ";						//Повідомлення про необхідність ввести значення одного з катетів прямокутного трикутника
+	cin>>katet1;									//Введення першого катета
+	cout<<"Введите гипотенузу: ";					//Повідомлення про необхідність ввести значення гіпотенузи		
+	cin>>hypotenuse;								//Введення гіпотенузи
+	katet2=sqrt(pow(hypotenuse, 2)-pow(katet1, 2));	//Обчислення другого катета
+	innerRadius =(katet1+katet2-hypotenuse)/2;		//Обчислення радіуса
+	cout<<"Внутренний радиус равен ";				//Виведення повідомлення про вивід радіуса
+	printf("%0.3f\n", innerRadius);			//Виведення значення радіуса з точністю 3 знаки після крапки
 	system("pause");
 	return 0;
 }
