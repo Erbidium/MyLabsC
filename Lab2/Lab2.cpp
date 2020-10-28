@@ -45,10 +45,10 @@ int main()
 							if(((side1+side2)<side3)||((side1+side3)<side2)||((side2+side3)<side1)) cout<<"Such triangle doesn't exist!"<<endl;
 							else if((side1==side2)||(side2==side3)||(side1==side3))
 							{
-								if((side1==side2)&&(side2==side3)&&(side1==side3)) cout<<"This triangle is equilateral!"<<endl;//рівносторонній трикутник
-								else {cout<<"This triangle is isosceles!"<<endl;}//рівнобедрений трикутник
+								if((side1==side2)&&(side2==side3)&&(side1==side3)) cout<<"This triangle is equilateral!"<<endl;
+								else {cout<<"This triangle is isosceles!"<<endl;}
 							}
-							else {cout<<"This triangle is versatile!"<<endl;}//різносторонній трикутник
+							else {cout<<"This triangle is versatile!"<<endl;}
 							
 						}
 						
