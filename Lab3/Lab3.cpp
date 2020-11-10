@@ -11,7 +11,7 @@ int main()
     int n=1;
     yZn=sin(x);
     y=1/yZn;
-	cout<<"Preicision is: e="<<e<<endl;
+	cout<<"Precision is: e="<<e<<endl;
 	cout<<"x="<<x<<endl;
 	printf("y(%-3d)=%0.8f\n", n, y);
     do
@@ -21,7 +21,7 @@ int main()
         yZn+=sin(x)*(1/pow(n, 2));
         y=1/yZn;
     	printf("y(%-3d)=%0.8f\n", n, y);
-    	//printf("y(%-3d)=%0.8f; y-yPrevious=%0.8f\n", n, y, fabs(y-yPrev));
+    	//printf("y(%-3d)=%0.8f; y-yPrev=%0.8f\n", n, y, fabs(y-yPrev));
     }
     while(fabs(y-yPrev)>e);
 	printf("\nResult:\ny=%0.8f", y);
