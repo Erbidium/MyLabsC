@@ -24,7 +24,7 @@ int main()
 	side1=round(sqrt(pow(x1-x2, 2)+pow(y1-y2, 2))*PrecInUse)/PrecInUse;
 	side2=round(sqrt(pow(x1-x3, 2)+pow(y1-y3, 2))*PrecInUse)/PrecInUse;
 	side3=round(sqrt(pow(x2-x3, 2)+pow(y2-y3, 2))*PrecInUse)/PrecInUse;
-	if(((side1+side2)<side3)||((side1+side3)<side2)||((side2+side3)<side1))
+	if(((side1+side2)<=side3)||((side1+side3)<=side2)||((side2+side3)<=side1))
 		cout<<"Such triangle doesn't exist!"<<endl;
 	else if((side1==side2)||(side2==side3)||(side1==side3))
 	{
