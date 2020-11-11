@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
 	const double x=0.56;
-    double e=0.00001, yPrev, y, yZn;
+    double e=1e-5, yPrev, y, yZn;
     int n=1;
     yZn=sin(x);
     y=1/yZn;
