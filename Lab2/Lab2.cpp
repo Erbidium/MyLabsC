@@ -7,8 +7,8 @@ int main()
 {
     float x1, y1, x2, y2, x3, y3;
 	float side1, side2, side3;
-	const int Precision=3;
-	const int PrecInUse=pow(10, Precision);
+	const int Precision=5;
+	const long int PrecInUse=pow(10, Precision);
 	cout<<"Enter the coordinate x of the first point:  ";
 	cin>>x1;
 	cout<<"Enter the coordinate y of the first point:  ";
@@ -35,4 +35,5 @@ int main()
 	}
 	else 
 		cout<<"This triangle is versatile!"<<endl;
+	return 0;
 }
