@@ -6,7 +6,7 @@ int main()
 {
 	int n, fact2i=1;
     double x, a;
-	cout<<"Please, enter x and n for this sequence"<<endl;
+	cout<<"Please, enter x and n(natural number) for this sequence"<<endl;
     cin>>x>>n;
 	double xStepi = x;
     for(int i=1;i<=n;i++)
