@@ -4,16 +4,18 @@ using namespace std;
 
 int main()
 {
-    double n, x, a;
+	int n, fact2i=1;
+    double x, a;
+	cout<<"Please, enter x and n for this sequence"<<endl;
     cin>>x>>n;
-	double xi = x;
-	int fact=1;
+	double xStepi = x;
     for(int i=1;i<=n;i++)
     {
-        fact=fact*(2*i-1)*(2*i);
-        a=xi/fact;
-        cout<<xi<<" "<<fact<<" "<<a<<endl;
-        xi=xi*x;
+        fact2i=fact2i*(2*i-1)*(2*i);
+        a=xStepi/fact2i;
+        cout<<"a("<<i<<")="<<a<<" ";
+        xStepi*=x;
     }
+	cout<<endl;
     return 0;
 }
