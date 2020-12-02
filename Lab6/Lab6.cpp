@@ -1,25 +1,25 @@
-﻿#define _USE_MATH_DEFINES
+﻿#include <iostream>
 #include <cmath>
-#include <iostream>
 
 using namespace std;
 
-double minimal(double, double);
+double min(double, double);
 
 int main()
 {
+	const double M_PI=3.141592653589793238463;
 	double a, b, U, V, W;
 	cout<<"Please, enter number a: ";
 	cin>>a;
 	cout<<"Please, enter number b: ";
 	cin>>b;
-	U=minimal(a, b);
-	V=minimal(a*b, a+b);
-	W=minimal(U+pow(V, 2), M_PI);
+	U=min(a, b);
+	V=min(a*b, a+b);
+	W=min(U+pow(V, 2), M_PI);
 	printf("\nU=%.2f\nV=%.2f\nW=%.2f", U, V, W);
 }
 
-double minimal(double num1, double num2)
+double min(double num1, double num2)
 {
 	return (num1<num2)?num1:num2;
 }
