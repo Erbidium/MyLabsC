@@ -15,7 +15,8 @@ int main()
 	cin>>b;
 	U=minimal(a, b);
 	V=minimal(a*b, a+b);
-	W= minimal(U+pow(V, 2), M_PI);
+	W=minimal(U+pow(V, 2), M_PI);
+	printf("\nU=%.2f\nV=%.2f\nW=%.2f", U, V, W);
 }
 
 double minimal(double num1, double num2)
