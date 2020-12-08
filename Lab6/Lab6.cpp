@@ -17,7 +17,7 @@ int main()
 	V=min(a*b, a+b);
 	W=min(U+pow(V, 2), M_PI);
 	printf("\nThe results are displayed with an accuracy of three digits:\n");
-	printf("U=%.2f\nV=%.2f\nW=%.2f", U, V, W);
+	printf("U=%.3f\nV=%.3f\nW=%.3f", U, V, W);
 }
 
 double min(double num1, double num2)
