@@ -3,16 +3,35 @@
 
 using namespace std;
 
-void getGrades(int *, int);
+void getGrades(int *, int, const int, const int);
 void printGrades(int*, int);
 int getIndexOfMinGrade(int *, int);
 int getIndexOfMaxGrade(int *, int);
 float getAverage(int *, int);
+int getNumberOfJudges();
 
 int main()
 {
-    int judges;
+    int judges, indexOfMaxGrade, indexOfMinGrade;
+	const int minPossibleGrade=0, maxPossibleGrade=12;
+	float athleteResult;
+	judges=getNumberOfJudges();
+	int* grades=new int[judges];
+	getGrades(grades, judges, minPossibleGrade, maxPossibleGrade);
+	printGrades(grades, judges);
+	indexOfMaxGrade=getIndexOfMaxGrade(grades, judges);
+	indexOfMinGrade=getIndexOfMinGrade(grades, judges);
+	grades[indexOfMaxGrade]=-1;
+	grades[indexOfMinGrade]=-1;
+	athleteResult=getAverage(grades, judges);
+	cout<<"The athlete received "<<athleteResult<<" points for the performance\n";
+	delete[] grades;
+}
+
+int getNumberOfJudges()
+{
 	bool input=false;
+	int judges;
 	cout<<"Enter a number of judges: ";
 	do
 	{
@@ -21,24 +40,15 @@ int main()
 		else cout<<"Please, enter a number of judges again!\n";
 	}
 	while(input!=true);
-	int* grades=new int[judges];
-	getGrades(grades, judges);
-	printGrades(grades, judges);
-	int indexOfMaxGrade=getIndexOfMaxGrade(grades, judges);
-	int indexOfMinGrade=getIndexOfMinGrade(grades, judges);
-	grades[indexOfMaxGrade]=0;
-	grades[indexOfMinGrade]=0;
-	float athleteResult=getAverage(grades, judges);
-	cout<<"The athlete received "<<athleteResult<<" points for the performance\n";
-	delete[] grades;
+	return judges;
 }
 
-void getGrades(int *grades, int judges)
+void getGrades(int *grades, int judges, const int minPossibleGrade, const int maxPossibleGrade)
 {
 	srand(time(NULL));
 	for(int i=0;i<judges;i++)
 	{
-		grades[i]=rand()%12+1;
+		grades[i]=rand()%(maxPossibleGrade-minPossibleGrade)+minPossibleGrade;
 	}
 }
 
@@ -79,7 +89,7 @@ float getAverage(int *grades, int judges)
 	for(int i=1;i<judges;i++)
 	{
 		sum+=grades[i];
-		if(grades[i]!=0) realNumOfGrades++;
+		if((grades[i]!=0)&&(grades[i]>=0)) realNumOfGrades++;
 	}
 	float average=sum/realNumOfGrades;
 	return average;
