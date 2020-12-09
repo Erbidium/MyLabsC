@@ -13,7 +13,7 @@ int main()
 {
     int indexOfMaxGrade, indexOfMinGrade;
 	const int minPossibleGrade=1, maxPossibleGrade=12, judges=8;
-	int grades[judges], arrayForResult[judges];
+	int grades[judges];
 	double athleteResult;
 	generateGrades(grades, judges, minPossibleGrade, maxPossibleGrade);
 	printGrades(grades, judges);
