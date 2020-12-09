@@ -29,7 +29,7 @@ void generateGrades(int *grades, int number, int minGrade, int maxGrade)
 	srand(time(NULL));
 	for(int i=0;i<number;i++)
 	{
-		grades[i]=rand()%(maxGrade-minGrade)+minGrade;
+		grades[i]=rand()%(maxGrade-minGrade+1)+minGrade;
 	}
 }
 
