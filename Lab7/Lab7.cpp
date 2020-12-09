@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <ctime>
+#include <cstdio>
 
 using namespace std;
 
