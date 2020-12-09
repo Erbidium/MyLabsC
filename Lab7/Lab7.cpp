@@ -3,11 +3,11 @@
 
 using namespace std;
 
-void getGrades(int *, int, const int, const int);
+void generateGrades(int *, int, const int, const int);
 void printGrades(int*, int);
 int getIndexOfMinGrade(int *, int);
 int getIndexOfMaxGrade(int *, int);
-float getAverage(int *, int);
+float getAverage(int *, int, const int);
 int getNumberOfJudges();
 
 int main()
@@ -17,13 +17,13 @@ int main()
 	float athleteResult;
 	judges=getNumberOfJudges();
 	int* grades=new int[judges];
-	getGrades(grades, judges, minPossibleGrade, maxPossibleGrade);
+	generateGrades(grades, judges, minPossibleGrade, maxPossibleGrade);
 	printGrades(grades, judges);
 	indexOfMaxGrade=getIndexOfMaxGrade(grades, judges);
 	indexOfMinGrade=getIndexOfMinGrade(grades, judges);
-	grades[indexOfMaxGrade]=-1;
-	grades[indexOfMinGrade]=-1;
-	athleteResult=getAverage(grades, judges);
+	grades[indexOfMaxGrade]=minPossibleGrade-1;
+	grades[indexOfMinGrade]=minPossibleGrade-1;
+	athleteResult=getAverage(grades, judges, minPossibleGrade);
 	cout<<"The athlete received "<<athleteResult<<" points for the performance\n";
 	delete[] grades;
 }
@@ -43,7 +43,7 @@ int getNumberOfJudges()
 	return judges;
 }
 
-void getGrades(int *grades, int judges, const int minPossibleGrade, const int maxPossibleGrade)
+void generateGrades(int *grades, int judges, const int minPossibleGrade, const int maxPossibleGrade)
 {
 	srand(time(NULL));
 	for(int i=0;i<judges;i++)
@@ -82,14 +82,14 @@ int getIndexOfMaxGrade(int *grades, int judges)
 	return indexMax;
 }
 
-float getAverage(int *grades, int judges)
+float getAverage(int *grades, int judges, const int minPossibleGrade)
 {
 	float sum=0;
 	int realNumOfGrades=0;
 	for(int i=1;i<judges;i++)
 	{
 		sum+=grades[i];
-		if((grades[i]!=0)&&(grades[i]>=0)) realNumOfGrades++;
+		if((grades[i]>=minPossibleGrade)) realNumOfGrades++;
 	}
 	float average=sum/realNumOfGrades;
 	return average;
