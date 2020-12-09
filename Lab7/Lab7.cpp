@@ -3,47 +3,29 @@
 
 using namespace std;
 
-void generateGrades(int *, int, const int, const int);
-void printGrades(int*, int);
-int getIndexOfMinGrade(int *, int);
-int getIndexOfMaxGrade(int *, int);
-float getAverage(int *, int, const int);
-int getNumberOfJudges();
+void generateGrades(int *);
+void printGrades(int*);
+int getIndexOfMinGrade(int*);
+int getIndexOfMaxGrade(int*);
+double getAverageWithoutMaxMin(int*, int, int);
+
+const int minPossibleGrade=1, maxPossibleGrade=12, judges=8;
 
 int main()
 {
-    int judges, indexOfMaxGrade, indexOfMinGrade;
-	const int minPossibleGrade=0, maxPossibleGrade=12;
-	float athleteResult;
-	judges=getNumberOfJudges();
-	int* grades=new int[judges];
-	generateGrades(grades, judges, minPossibleGrade, maxPossibleGrade);
-	printGrades(grades, judges);
-	indexOfMaxGrade=getIndexOfMaxGrade(grades, judges);
-	indexOfMinGrade=getIndexOfMinGrade(grades, judges);
-	grades[indexOfMaxGrade]=minPossibleGrade-1;
-	grades[indexOfMinGrade]=minPossibleGrade-1;
-	athleteResult=getAverage(grades, judges, minPossibleGrade);
-	cout<<"The athlete received "<<athleteResult<<" points for the performance\n";
-	delete[] grades;
+    int indexOfMaxGrade, indexOfMinGrade, numWithoutMaxMin=0;
+	double athleteResult;
+	int grades[judges], arrayForResult[judges];
+	generateGrades(grades);
+	printGrades(grades);
+	indexOfMaxGrade=getIndexOfMaxGrade(grades);
+	indexOfMinGrade=getIndexOfMinGrade(grades);
+	athleteResult=getAverageWithoutMaxMin(grades, grades[indexOfMaxGrade], grades[indexOfMinGrade]);
+	printf("The athlete received %0.1f points for the performance\n", athleteResult);
 }
 
-int getNumberOfJudges()
-{
-	bool input=false;
-	int judges;
-	cout<<"Enter a number of judges: ";
-	do
-	{
-		cin>>judges;
-		if((judges>=3)&&(judges<=10)) input=true;
-		else cout<<"Please, enter a number of judges again!\n";
-	}
-	while(input!=true);
-	return judges;
-}
 
-void generateGrades(int *grades, int judges, const int minPossibleGrade, const int maxPossibleGrade)
+void generateGrades(int *grades)
 {
 	srand(time(NULL));
 	for(int i=0;i<judges;i++)
@@ -52,7 +34,7 @@ void generateGrades(int *grades, int judges, const int minPossibleGrade, const i
 	}
 }
 
-void printGrades(int* grades, int judges)
+void printGrades(int* grades)
 {
 	cout<<"Grades from judges: ";
 	for(int i=0;i<judges;i++)
@@ -62,7 +44,7 @@ void printGrades(int* grades, int judges)
 	cout<<endl;
 }
 
-int getIndexOfMinGrade(int *grades, int judges)
+int getIndexOfMinGrade(int *grades)
 {
 	int indexMin=0;
 	for(int i=1;i<judges;i++)
@@ -72,8 +54,9 @@ int getIndexOfMinGrade(int *grades, int judges)
 	return indexMin;
 }
 
-int getIndexOfMaxGrade(int *grades, int judges)
+int getIndexOfMaxGrade(int *grades)
 {
+	bool isMax=false;
 	int indexMax=0;
 	for(int i=1;i<judges;i++)
 	{
@@ -82,15 +65,19 @@ int getIndexOfMaxGrade(int *grades, int judges)
 	return indexMax;
 }
 
-float getAverage(int *grades, int judges, const int minPossibleGrade)
+double getAverageWithoutMaxMin(int *grades, int minGrade, int maxGrade)
 {
-	float sum=0;
-	int realNumOfGrades=0;
-	for(int i=1;i<judges;i++)
+	double sum=0;
+	int gradesNotMaxMin=0;
+	cout<<minGrade<<" "<<maxGrade<<endl;
+	for(int i=0;i<judges;i++)
 	{
-		sum+=grades[i];
-		if((grades[i]>=minPossibleGrade)) realNumOfGrades++;
+		if((grades[i]!=minGrade)&&(grades[i]!=maxGrade))	
+		{
+			sum+=grades[i];
+			gradesNotMaxMin++;
+		}
 	}
-	float average=sum/realNumOfGrades;
+	double average=sum/gradesNotMaxMin;
 	return average;
 }
