@@ -9,12 +9,11 @@ int **createEmptySquareMatrix(int matrixOrder);
 void fillMatrixWithRandElems(int **matrix, int matrixOrder);
 void deleteMatrix(int **matrix, int matrixOrder);
 void printMatrix(int **matrix, int matrixOrder);
-int MinInRow(int *array, int size);
+int minInRow(int *array, int size);
 void swapMinInRowsAndDyagElems(int **matrix, int matrixOrder);
 void fillMatrixQ(int **matrixA, int **matrixB, int **matrixQ, int matrixOrder);
 
 const int rangeOfMatrixElems=100;
-const int offsetOfRange=0;
 
 int main()
 {
@@ -52,6 +51,10 @@ int **createEmptySquareMatrix(int matrixOrder)
 	for(int i=0;i<matrixOrder;i++)
 	{
 		matrix[i]=new int[matrixOrder];
+		for(int j=0;j<matrixOrder;j++)
+		{
+			matrix[i][j]=0;
+		}
 	}
 	return matrix;
 }
@@ -62,7 +65,7 @@ void fillMatrixWithRandElems(int **matrix, int matrixOrder)
 	{
 		for(int j=0;j<matrixOrder;j++)
 		{
-			matrix[i][j]=rand()%(rangeOfMatrixElems+1)+offsetOfRange;
+			matrix[i][j]=rand()%(rangeOfMatrixElems+1);
 		}
 	}
 }
@@ -88,7 +91,7 @@ void printMatrix(int **matrix, int matrixOrder)
 	}
 }
 
-int MinInRow(int *array, int size)
+int minInRow(int *array, int size)
 {
 	int min=array[0];
 	for(int i=1;i<size;i++)
@@ -102,13 +105,13 @@ void swapMinInRowsAndDyagElems(int **matrix, int matrixOrder)
 {
 	for(int i=0;i<matrixOrder;i++)
 	{
-		int minInRow=MinInRow(matrix[i], matrixOrder);
+		int minRowElem=minInRow(matrix[i], matrixOrder);
 		int diagElem=matrix[i][i];
 		for(int j=0;j<matrixOrder;j++)
 		{
-			if(matrix[i][j]==minInRow) matrix[i][j]=diagElem;
+			if(matrix[i][j]==minRowElem) matrix[i][j]=diagElem;
 		}
-		matrix[i][i]=minInRow;
+		matrix[i][i]=minRowElem;
 	}
 }
 
