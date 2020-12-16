@@ -1,17 +1,16 @@
 ﻿#include <iostream>
+#include <cmath>
 #include <ctime>
 #include <iomanip>
 
 using namespace std;
 
-void swapElems(int& elem1, int& elem2);
-int max(int elem1, int elem2);
 int **createEmptySquareMatrix(int matrixOrder);
+void fillMatrixWithRandElems(int **matrix, int matrixOrder);
 void deleteMatrix(int **matrix, int matrixOrder);
 void printMatrix(int **matrix, int matrixOrder);
-int indexOfMinInArray(int *array, int size);
+int MinInRow(int *array, int size);
 void swapMinInRowsAndDyagElems(int **matrix, int matrixOrder);
-void fillMatrixWithRandElems(int **matrix, int matrixOrder);
 void fillMatrixQ(int **matrixA, int **matrixB, int **matrixQ, int matrixOrder);
 
 const int rangeOfMatrixElems=100;
@@ -47,18 +46,6 @@ int main()
 	return 0;
 }
 
-void swapElems(int& elem1, int& elem2)
-{
-	int temp=elem1;
-	elem1=elem2;
-	elem2=temp;
-}
-
-int max(int elem1, int elem2)
-{
-	return elem1>elem2?elem1:elem2;
-}
-
 int **createEmptySquareMatrix(int matrixOrder)
 {
 	int **matrix=new int*[matrixOrder];
@@ -69,6 +56,16 @@ int **createEmptySquareMatrix(int matrixOrder)
 	return matrix;
 }
 
+void fillMatrixWithRandElems(int **matrix, int matrixOrder)
+{
+	for(int i=0;i<matrixOrder;i++)
+	{
+		for(int j=0;j<matrixOrder;j++)
+		{
+			matrix[i][j]=rand()%(rangeOfMatrixElems+1)+offsetOfRange;
+		}
+	}
+}
 
 void deleteMatrix(int **matrix, int matrixOrder)
 {
@@ -91,33 +88,27 @@ void printMatrix(int **matrix, int matrixOrder)
 	}
 }
 
-int indexOfMinInArray(int *array, int size)
+int MinInRow(int *array, int size)
 {
-	int indexMin=0;
+	int min=array[0];
 	for(int i=1;i<size;i++)
 	{
-		if(array[indexMin]>array[i]) indexMin=i;
+		if(min>array[i]) min=array[i];
 	}
-	return indexMin;
+	return min;
 }
 
 void swapMinInRowsAndDyagElems(int **matrix, int matrixOrder)
 {
 	for(int i=0;i<matrixOrder;i++)
 	{
-		int indexMin=indexOfMinInArray(matrix[i], matrixOrder);
-		swapElems(matrix[i][indexMin], matrix[i][i]);
-	}
-}
-
-void fillMatrixWithRandElems(int **matrix, int matrixOrder)
-{
-	for(int i=0;i<matrixOrder;i++)
-	{
+		int minInRow=MinInRow(matrix[i], matrixOrder);
+		int diagElem=matrix[i][i];
 		for(int j=0;j<matrixOrder;j++)
 		{
-			matrix[i][j]=rand()%(rangeOfMatrixElems+1)+offsetOfRange;
+			if(matrix[i][j]==minInRow) matrix[i][j]=diagElem;
 		}
+		matrix[i][i]=minInRow;
 	}
 }
 
