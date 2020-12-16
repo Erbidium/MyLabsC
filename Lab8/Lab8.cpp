@@ -6,13 +6,13 @@ using namespace std;
 
 void swapElems(int& elem1, int& elem2);
 int max(int elem1, int elem2);
-int **generateEmptyMatrix(int matrixOrder);
+int **createEmptySquareMatrix(int matrixOrder);
 void deleteMatrix(int **matrix, int matrixOrder);
 void printMatrix(int **matrix, int matrixOrder);
 int indexOfMinInArray(int *array, int size);
 void swapMinInRowsAndDyagElems(int **matrix, int matrixOrder);
-int **createMatrixWithRandElems(int matrixOrder);
-int **createMatrixQ(int **matrix1, int **matrix2, int matrixOrder);
+void fillMatrixWithRandElems(int **matrix, int matrixOrder);
+void fillMatrixQ(int **matrixA, int **matrixB, int **matrixQ, int matrixOrder);
 
 const int rangeOfMatrixElems=100;
 const int offsetOfRange=0;
@@ -23,8 +23,11 @@ int main()
     int **matrixA, **matrixB, **matrixQ, matrixOrder=0;
 	cout<<"Please, enter matrix order: ";
 	cin>>matrixOrder;
-	matrixA=createMatrixWithRandElems(matrixOrder);
-	matrixB=createMatrixWithRandElems(matrixOrder);
+	matrixA=createEmptySquareMatrix(matrixOrder);
+	matrixB=createEmptySquareMatrix(matrixOrder);
+	matrixQ=createEmptySquareMatrix(matrixOrder);
+	fillMatrixWithRandElems(matrixA, matrixOrder);
+	fillMatrixWithRandElems(matrixB, matrixOrder);
 	cout<<"Matrix A:\n";
 	printMatrix(matrixA, matrixOrder);
 	cout<<"Matrix B:\n";
@@ -35,7 +38,7 @@ int main()
 	printMatrix(matrixA, matrixOrder);
 	cout<<"Matrix B after replacements:\n";
 	printMatrix(matrixB, matrixOrder);
-	matrixQ=createMatrixQ(matrixA, matrixB, matrixOrder);
+	fillMatrixQ(matrixA, matrixB, matrixQ, matrixOrder);
 	cout<<"\nMatrix Q:\n";
 	printMatrix(matrixQ, matrixOrder);
 	deleteMatrix(matrixA, matrixOrder);
@@ -56,7 +59,7 @@ int max(int elem1, int elem2)
 	return elem1>elem2?elem1:elem2;
 }
 
-int **generateEmptyMatrix(int matrixOrder)
+int **createEmptySquareMatrix(int matrixOrder)
 {
 	int **matrix=new int*[matrixOrder];
 	for(int i=0;i<matrixOrder;i++)
@@ -107,9 +110,8 @@ void swapMinInRowsAndDyagElems(int **matrix, int matrixOrder)
 	}
 }
 
-int **createMatrixWithRandElems(int matrixOrder)
+void fillMatrixWithRandElems(int **matrix, int matrixOrder)
 {
-	int **matrix=generateEmptyMatrix(matrixOrder);
 	for(int i=0;i<matrixOrder;i++)
 	{
 		for(int j=0;j<matrixOrder;j++)
@@ -117,18 +119,15 @@ int **createMatrixWithRandElems(int matrixOrder)
 			matrix[i][j]=rand()%(rangeOfMatrixElems+1)+offsetOfRange;
 		}
 	}
-	return matrix;
 }
 
-int **createMatrixQ(int **matrix1, int **matrix2, int matrixOrder)
+void fillMatrixQ(int **matrixA, int **matrixB, int **matrixQ, int matrixOrder)
 {
-	int **matrixQ=generateEmptyMatrix(matrixOrder);
 	for(int i=0;i<matrixOrder;i++)
 	{
 		for(int j=0;j<matrixOrder;j++)
 		{
-			matrixQ[i][j]=max(matrix1[i][j], matrix2[i][j]);
+			matrixQ[i][j]=max(matrixA[i][j], matrixB[i][j]);
 		}
 	}
-	return matrixQ;
 }
