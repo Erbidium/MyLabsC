@@ -17,7 +17,10 @@ int getSumOfNumbersFromStr(string strWithNumbers)
 			sum+=stoi(currentNumber);
 			currentNumber="0";
 		}
-		if(i==strWithNumbers.length()-1) sum+=stoi(currentNumber);
+		if(i==strWithNumbers.length()-1)
+		{
+			sum+=stoi(currentNumber);
+		}
 	}
 	return sum;
 }
