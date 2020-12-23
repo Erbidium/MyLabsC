@@ -2,4 +2,4 @@
 
 using namespace std;
 
-int getSumOfNumbersFromStr(string strWithNumbers);
+long int getSumOfNumbersFromStr(string strWithNumbers);

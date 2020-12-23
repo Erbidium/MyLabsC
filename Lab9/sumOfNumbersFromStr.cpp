@@ -2,10 +2,10 @@
 
 using namespace std;
 
-int getSumOfNumbersFromStr(string strWithNumbers)
+long int getSumOfNumbersFromStr(string strWithNumbers)
 {
 	string currentNumber="0";
-	int sum=0;
+	long int sum=0;
 	for(int i=0;i<strWithNumbers.length();i++)
 	{
 		if(isdigit(strWithNumbers[i]))
@@ -14,12 +14,12 @@ int getSumOfNumbersFromStr(string strWithNumbers)
 		}
 		else
 		{
-			sum+=stoi(currentNumber);
+			sum+=stol(currentNumber);
 			currentNumber="0";
 		}
 		if(i==strWithNumbers.length()-1)
 		{
-			sum+=stoi(currentNumber);
+			sum+=stol(currentNumber);
 		}
 	}
 	return sum;

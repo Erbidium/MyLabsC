@@ -7,8 +7,8 @@ using namespace std;
 int main()
 {
     string strWithNumbers;
-	int sum=0;
-	cout<<"Please, enter a string:";
+	long int sum=0;
+	cout<<"Please, enter a string: ";
 	getline(cin, strWithNumbers);
 	sum=getSumOfNumbersFromStr(strWithNumbers);
 	cout<<"Sum of numbers in string: "<<sum;
